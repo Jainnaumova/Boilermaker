@@ -1,24 +1,25 @@
-"use strict";
-// import webpack from "webpack";
-// import path from "path";
-const path = require("path");
-
 module.exports = {
-  entry: "./app/main",
+  entry: "./app/main.js",
   mode: "development",
   output: {
     path: __dirname,
     filename: "./public/bundle.js"
   },
-  devtool: "source-maps",
+  devtool: "source-map",
   module: {
     rules: [
       {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader"
+        test: /\.jsx?$/,
+        exclude: /(node_modules|bower_components)/,
+        loader: "babel-loader",
+        options: {
+          presets: ["react", "es2015"]
         }
+      },
+      // use the style-loader/css-loader combos for anything matching the .css extension
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"]
       }
     ]
   }
