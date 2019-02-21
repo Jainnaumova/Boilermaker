@@ -1,22 +1,25 @@
+const isDev = process.env.NODE_ENV === "development";
+
 module.exports = {
-  entry: ["babel-polyfill", "./app/main"],
-  mode: "development",
+  entry: ["babel-polyfill", "./app/main.js"],
+  mode: isDev ? "development" : "production",
   output: {
     path: __dirname,
-    filename: "./public/bundle"
+    filename: "./public/bundle.js"
   },
   resolve: {
-    extensions: ['.js', '.jsx']
-  }
+    extensions: [".js", ".jsx"]
+  },
   devtool: "source-map",
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
-        exclude: /(node_modules|bower_components)/,
+        test: /.js$/,
         loader: "babel-loader",
-        options: {
-          presets: ["react", "es2015"]
+        exclude: /node_modules/,
+        query: {
+          presets: ["@babel/preset-react", "@babel/preset-env"],
+          plugins: ["@babel/proposal-class-properties"]
         }
       },
       // use the style-loader/css-loader combos for anything matching the .css extension

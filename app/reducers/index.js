@@ -4,7 +4,7 @@ export const initialState = {
   users: []
 };
 
-const rootReducer = (state = initialState, action) => {
+export const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case GOT_ALL_USERS:
       return { ...state, users: action.users };
@@ -12,5 +12,3 @@ const rootReducer = (state = initialState, action) => {
       return state;
   }
 };
-
-export default rootReducer;

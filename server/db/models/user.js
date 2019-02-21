@@ -9,5 +9,11 @@ module.exports = db.define("user", {
   lastName: {
     type: Sequelize.STRING,
     allowNull: false
+  },
+  email: {
+    type: Sequelize.STRING
+  },
+  password: {
+    type: Sequelize.STRING
   }
 });
