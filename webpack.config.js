@@ -1,10 +1,13 @@
 module.exports = {
-  entry: "./app/main.js",
+  entry: ["babel-polyfill", "./app/main"],
   mode: "development",
   output: {
     path: __dirname,
-    filename: "./public/bundle.js"
+    filename: "./public/bundle"
   },
+  resolve: {
+    extensions: ['.js', '.jsx']
+  }
   devtool: "source-map",
   module: {
     rules: [
